@@ -3,11 +3,67 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./cscc/app.scss" />
+    <link rel="stylesheet" href="./scss/app.scss" />
     <script type="module" src="./js/app.js"></script>
     <title>Document</title>
   </head>
   <body>
-    <h1>Hello</h1>
+    <header class="header">
+      <h1>Trello</h1>
+      <div class="clock"></div>
+    </header>
+
+    <dialog id="myDialog">
+      🖖 Живи долго и процветай!
+      <form method="dialog">
+        <button class="btn btn-danger">Закрыть с помощью формы</button>
+      </form>
+    </dialog>
+    <section class="todos-wrapper">
+      <div class="todo-storage container">
+        <div class="todo-storage__title-wrapper">
+          <h3>TODO: 0</h3>
+          <button type="button" class="btn btn-success" id="button-open__modal-add">
+            <img style="transform: scale(150%)" src="./image/add-square-svgrepo-com.svg" alt="+" />
+          </button>
+        </div>
+        <div class="todo-storage__list">
+          <div class="todo-storage__task">
+            <div class="todo-storage__task-header">
+              <h4 class="todo-storage__task-title">Title : task 1</h4>
+              <button type="button" class="btn btn-danger">
+                <img style="transform: scale(140%)" src="./image/delete-svgrepo-com.svg" alt="X" />
+              </button>
+            </div>
+            <p class="todo-storage__task-description">
+              Description : Lorem ipsum dolor, sit amet consectetur adipisicin
+            </p>
+            <div class="todo-storage__task-info">
+              <p class="todo-storage__task-user-name">UserName</p>
+              <p class="todo-storage__task-time">Time</p>
+            </div>
+            <div class="todo-storage__task-setting">
+              <select class="form-select" aria-label="Default select example">
+                <option value="1">Set</option>
+                <option value="2">In progress</option>
+                <option value="3">Done</option>
+              </select>
+              <button type="button" class="btn btn-warning">Edit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="todo-storage__in-progress container">
+        <h3>IN PROGRESS: 0</h3>
+        <div class="todo-storage__in-progress__list"></div>
+      </div>
+
+      <div class="todo-storage__done container">
+        <h3>Done: 0</h3>
+        <div class="todo-storage__done__list"></div>
+        <button type="button" class="btn btn-danger">Delete All</button>
+      </div>
+    </section>
   </body>
 </html>

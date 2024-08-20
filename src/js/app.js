@@ -1,2 +1,7 @@
 // import { Tooltip, Toast, Popover } from 'bootstrap'
-console.log('hello');
+import {clock} from './helpels';
+import {buttonOpenModalAddElement} from './declaration.js';
+console.log(buttonOpenModalAddElement);
+buttonOpenModalAddElement.addEventListener('click', () => {
+  window.myDialog.showModal();
+});

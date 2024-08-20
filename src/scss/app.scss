@@ -1,0 +1,120 @@
+// Vendoes
+@import'variables.scss';
+@import 'bootstrap/scss/bootstrap';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button:hover{
+    transform: scale(110%);
+    transition: 0.4s;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    background-color: $lavender;
+    border-radius: 30px;
+    padding: 5%;
+    margin: 2%;
+}
+
+.clock{
+ background-color: aliceblue ;
+ padding:15px 20px;
+ border-radius: 10px;
+
+}
+
+.todos-wrapper {
+    display: flex;
+}
+
+.container{
+    max-width: 30%;
+    border: solid $gray;
+    border-radius: 15px;
+    min-height: 50em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+}
+
+
+// .container h3{
+//     padding: 20px 10px;
+//     border-radius: 10px;
+//     // transform: scale(102%);
+// }
+.todo-storage h3 {
+    // background-color: $aqua;  
+    text-wrap: nowrap;
+}
+
+.todo-storage__in-progress h3{
+    background-color: $smoke;
+    text-wrap: nowrap;
+    padding: 20px 10px;
+    border-radius: 10px;
+}
+
+.todo-storage__done h3{
+background-color: #00BFFF;
+padding: 20px 10px;
+border-radius: 10px;
+}
+
+.todo-storage__title-wrapper{
+    display: flex;
+    justify-content: space-between;
+    background-color: $aqua;  
+    padding: 16px 10px;
+     border-radius: 10px;
+     margin-bottom: 10px;
+}
+.todo-storage__list, .todo-storage__in-progress, .todo-storage__done{
+    height: 100%;
+}
+
+
+
+.todo-storage__task {
+    background-color: $aqua;
+    display: block;
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.todo-storage__task-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+// .todo-storage__task-title {
+//     background-color: $smoke;
+//     height: 100%;
+// }
+// .todo-storage__task-description {
+// }
+
+.todo-storage__task-info{
+    display: flex;
+    justify-content: space-between;
+}
+
+.todo-storage__task-setting{
+    display: flex;
+}
+
+// .todo-storage__task-user-name {
+// }
+// .todo-storage__task-time {
+// }
