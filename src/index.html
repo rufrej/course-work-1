@@ -12,23 +12,41 @@
       <h1>Trello</h1>
       <div class="clock"></div>
     </header>
-
-    <dialog id="myDialog">
-      🖖 Живи долго и процветай!
-      <form method="dialog">
-        <button class="btn btn-danger">Закрыть с помощью формы</button>
+    <!-- -------------- Modal window for adding --------- -->
+    <dialog class="dialog-open__modal-add" id="dialogOpenModalAdd">
+      <form id="form-add" class="form-modal form-modal-add">
+        <input id="input-title" type="text" placeholder="Title" />
+        <textarea
+          id="input-description"
+          type="text"
+          placeholder="Description"
+          rows="3"
+          cols="40"
+        ></textarea>
       </form>
+      <div class="form-modal__controlling">
+        <select class="form-select">
+          <option value="1">Set</option>
+          <option value="2">In progress</option>
+          <option value="3">Done</option>
+        </select>
+        <button type="submit" id="button-submit" class="btn btn-success">Add</button>
+        <form method="dialog">
+          <button class="btn btn-danger">Close</button>
+        </form>
+      </div>
     </dialog>
+    <!-- ---------------------------------------------------- -->
     <section class="todos-wrapper">
       <div class="todo-storage container">
         <div class="todo-storage__title-wrapper">
           <h3>TODO: 0</h3>
-          <button type="button" class="btn btn-success" id="button-open__modal-add">
+          <button type="button" class="btn btn-success" id="buttonOpenModalAdd">
             <img style="transform: scale(150%)" src="./image/add-square-svgrepo-com.svg" alt="+" />
           </button>
         </div>
-        <div class="todo-storage__list">
-          <div class="todo-storage__task">
+        <div class="todo-storage__current">
+          <!-- <div class="todo-storage__task">
             <div class="todo-storage__task-header">
               <h4 class="todo-storage__task-title">Title : task 1</h4>
               <button type="button" class="btn btn-danger">
@@ -43,14 +61,14 @@
               <p class="todo-storage__task-time">Time</p>
             </div>
             <div class="todo-storage__task-setting">
-              <select class="form-select" aria-label="Default select example">
+              <select class="form-select">
                 <option value="1">Set</option>
                 <option value="2">In progress</option>
                 <option value="3">Done</option>
               </select>
               <button type="button" class="btn btn-warning">Edit</button>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
 
