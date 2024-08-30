@@ -12,32 +12,58 @@
       <h1>Trello</h1>
       <div class="clock"></div>
     </header>
+    <img
+      style="width: 40px; height: 40px; border-radius: 50%"
+      src="./image/user1.png"
+      alt="user1"
+    />
     <!-- -------------- Modal window for adding --------- -->
     <dialog class="dialog-open__modal-add" id="dialogOpenModalAdd">
-      <form id="form-add" class="form-modal form-modal-add">
-        <input id="input-title" type="text" placeholder="Title" />
+      <form id="form-modal-add" class="form-modal form-modal-add">
+        <h2>Create new todo</h2>
+        <input id="input-title" type="text" name="title" placeholder="Title" />
         <textarea
           id="input-description"
           type="text"
+          name="description"
           placeholder="Description"
           rows="3"
           cols="40"
         ></textarea>
       </form>
-      <div class="form-modal__controlling">
-        <select class="form-select">
-          <option value="1">Set</option>
-          <option value="2">In progress</option>
-          <option value="3">Done</option>
+      <div class="d-flex">
+        <select id="select__user-name" class="form-select">
+          <option value="Ilya">Ilya</option>
+          <option value="Polina">Polina</option>
+          <option value="Diana">Diana</option>
         </select>
-        <button type="submit" id="button-submit" class="btn btn-success">Add</button>
+        <select id="select__status" class="form-select">
+          <option value="todo">To Do</option>
+          <option value="in-progress">In progress</option>
+          <option value="done">Done</option>
+        </select>
+        <button type="submit" id="button-submit" form="form-modal-add" class="btn btn-success">
+          Confirm
+        </button>
         <form method="dialog">
-          <button class="btn btn-danger">Close</button>
+          <button class="btn btn-danger">Cancel</button>
         </form>
       </div>
     </dialog>
+
+    
+
     <!-- ---------------------------------------------------- -->
-    <section class="todos-wrapper">
+    <dialog class="dialog-confirm" id="dialogConfirm">
+      <p>Are you sure</p>
+
+      <form method="dialog">
+        <button class="btn btn-danger">Close</button>
+      </form>
+      <button type="button" class="btn btn-primary" id="buttonDialogConfirm">Confirm</button>
+    </dialog>
+    <!-- ---------------------------------------------------- -->
+    <main class="todos-wrapper">
       <div class="todo-storage container">
         <div class="todo-storage__title-wrapper">
           <h3>TODO: 0</h3>
@@ -45,22 +71,22 @@
             <img style="transform: scale(150%)" src="./image/add-square-svgrepo-com.svg" alt="+" />
           </button>
         </div>
-        <div class="todo-storage__current">
-          <!-- <div class="todo-storage__task">
-            <div class="todo-storage__task-header">
-              <h4 class="todo-storage__task-title">Title : task 1</h4>
+        <div class="todo-storage__current__list">
+          <!-- <div class="todo-task">
+            <div class="todo-task-header">
+              <h4 class="todo-task-title">Title : task 1</h4>
               <button type="button" class="btn btn-danger">
                 <img style="transform: scale(140%)" src="./image/delete-svgrepo-com.svg" alt="X" />
               </button>
             </div>
-            <p class="todo-storage__task-description">
+            <p class="todo-task-description">
               Description : Lorem ipsum dolor, sit amet consectetur adipisicin
             </p>
-            <div class="todo-storage__task-info">
-              <p class="todo-storage__task-user-name">UserName</p>
-              <p class="todo-storage__task-time">Time</p>
+            <div class="todo-task-info">
+              <p class="todo-task-user-name">UserName</p>
+              <p class="todo-task-time">Time</p>
             </div>
-            <div class="todo-storage__task-setting">
+            <div class="todo-task-setting">
               <select class="form-select">
                 <option value="1">Set</option>
                 <option value="2">In progress</option>
@@ -74,14 +100,39 @@
 
       <div class="todo-storage__in-progress container">
         <h3>IN PROGRESS: 0</h3>
-        <div class="todo-storage__in-progress__list"></div>
+        <div class="todo-storage__in-progress__list">
+          <!-- <div class="todo-task">
+            <div class="todo-task-header">
+              <h4 class="todo-task-title">Title : task 1</h4>
+              <button type="button" class="btn btn-danger">
+                <img style="transform: scale(140%)" src="./image/delete-svgrepo-com.svg" alt="X" />
+              </button>
+            </div>
+            <p class="todo-task-description">
+              Description : Lorem ipsum dolor, sit amet consectetur adipisicin
+            </p>
+            <div class="todo-task-info">
+              <img src="./image/user1.png" alt="user1" />
+              <p class="todo-task-user-name">UserName</p>
+              <p class="todo-task-time">Time</p>
+            </div>
+            <div class="todo-task-setting">
+              <select id="todo-select" class="form-select">
+                <option value="1">Set</option>
+                <option value="2">In progress</option>
+                <option value="3">Done</option>
+              </select>
+              <button type="button" class="btn btn-warning">Edit</button>
+            </div>
+          </div> -->
+        </div>
       </div>
 
       <div class="todo-storage__done container">
         <h3>Done: 0</h3>
         <div class="todo-storage__done__list"></div>
-        <button type="button" class="btn btn-danger">Delete All</button>
       </div>
-    </section>
+      <button type="button" class="btn btn-danger button-delete-all">Delete All</button>
+    </main>
   </body>
 </html>
