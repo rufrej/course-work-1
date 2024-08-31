@@ -77,6 +77,7 @@ button:hover {
 
 .todos-wrapper {
   display: flex;
+  position: relative;
 }
 
 .container {
@@ -155,23 +156,32 @@ button:hover {
   padding: 15px;
   border-radius: 15px;
   margin-bottom: 10px;
-  transition: 0.4s;
+  transition: 0.2s;
 }
 
 .edit-task {
+  // transform: scale(150%);
   position: absolute;
-  margin-inline: 20%;
+  margin: auto;
+  margin-inline: 10%;
   inset-inline: 0;
   inset-block-start: 50%;
-  transform: translateY(-50%);
-  justify-content: center;
+  transform: translateY(-50%) scale(120%);
 }
-#edit-title {
+
+.edit-title {
+  text-align: center;
+  font-size: 36px;
+}
+#task-edit-title {
+  font-size: 26px;
   margin: auto;
+  width: 90%;
   border-radius: 20px;
   text-align: center;
 }
-#edit-description {
+#task-edit-description {
+  font-size: 26px;
   width: 100%;
   border-radius: 20px;
   text-align: center;
@@ -206,20 +216,17 @@ button:hover {
 .todo-task-time {
   margin-left: auto;
 }
-// .todo-task-user-name{
-//   background-color: ;
-// }
 
-.todo-task-setting {
+.task-setting {
   display: flex;
+  justify-content: space-between;
   gap: 5%;
+}
+
+.task-select {
+  max-width: 300px;
 }
 
 .hidden {
   display: none;
 }
-
-// .todo-storage__task-user-name {
-// }
-// .todo-storage__task-time {
-// }

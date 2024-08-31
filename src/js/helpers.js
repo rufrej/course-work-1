@@ -5,6 +5,9 @@ import {
   todoStorageDoneListElement,
   selectUserNameElement,
   selectUserStatusElement,
+  todoCounter,
+  inProgressCounter,
+  doneCounter,
 } from './declaration.js';
 
 import {buildTemplateTodo} from './templates.js';
@@ -75,9 +78,9 @@ function setData(data) {
 //     }
 //   });
 // }
-
+console.log(todoCounter.innerHTML);
 function render(payload) {
-  const toDoList = payload.filter(function (task) {
+  const todoList = payload.filter(function (task) {
     return task.status === 'todo';
   });
   const inProgressList = payload.filter(function (task) {
@@ -87,11 +90,15 @@ function render(payload) {
     return task.status === 'done';
   });
 
+  todoCounter.innerHTML = todoList.length;
+  inProgressCounter.innerHTML = inProgressList.length;
+  doneCounter.innerHTML = doneList.length;
+
   todoStorageCurrentListElement.innerHTML = '';
   todoStorageInProgressListElement.innerHTML = '';
   todoStorageDoneListElement.innerHTML = '';
 
-  toDoList.forEach(todo => {
+  todoList.forEach(todo => {
     todoStorageCurrentListElement.insertAdjacentHTML('beforeend', buildTemplateTodo(todo));
   });
   inProgressList.forEach(todo => {

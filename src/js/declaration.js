@@ -15,8 +15,10 @@ const buttonDeleteAllElement = document.querySelector('.button-delete-all');
 const selectUserNameElement = document.querySelector('#select__user-name');
 const selectUserStatusElement = document.querySelector('#select__status');
 const buttonDialogConfirmElement = document.querySelector('#buttonDialogConfirm');
+const todoCounter = document.querySelector('#todo-counter');
+const inProgressCounter = document.querySelector('#in-progress-counter');
+const doneCounter = document.querySelector('#done-counter');
 // const s = document.querySelector('#todo-select');
-// console.log(s.value);
 
 export {
   data,
@@ -35,4 +37,7 @@ export {
   selectUserStatusElement,
   todosWrapperElement,
   buttonDialogConfirmElement,
+  todoCounter,
+  inProgressCounter,
+  doneCounter,
 };

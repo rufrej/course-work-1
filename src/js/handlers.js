@@ -25,14 +25,6 @@ function handleSubmitForm(event) {
   setData(data);
   formAddElement.reset();
   render(data);
-
-  // if (inputTitleElement !== '' || inputDescriptionElement !== '') {
-  //   let newTodo = new ObjectTodo(inputTitleElement.value, inputDescriptionElement.value);
-  //   todosList.push(newTodo);
-  //   setData(todosList);
-  //   formAddElement.reset();
-  //   render(getData());
-  // }
 }
 
 function handleChangeSelectStatus({target}) {
@@ -73,6 +65,39 @@ function handleClickButtonClose({target}) {
   }
 }
 
+// function handleEditTask({target}) {
+//   if (target.dataset.role == 'edit') {
+//     const taskElement = target.closest('.todo-task');
+//     const id = taskElement.dataset.id;
+//     const task = data.find(task => task.id === id);
+//     const titleElement = taskElement.querySelector('.todo-task-title');
+//     const descriptionElement = taskElement.querySelector('.todo-task-description');
+//     const editTitleElement = taskElement.querySelector('#task-edit-title');
+//     const editDescriptionElement = taskElement.querySelector('#task-edit-description');
+//     const buttonClose = taskElement.querySelector('.button-close').classList.toggle('hidden');
+//     const buttonCloseEdit = taskElement.querySelector('.button-close-edit');
+//     const editTitle = taskElement.querySelector('.edit-title').classList.toggle('hidden');
+//     buttonCloseEdit.classList.toggle('hidden');
+//     console.log(buttonCloseEdit);
+//     taskElement.classList.toggle('edit-task');
+//     titleElement.classList.toggle('hidden');
+//     descriptionElement.classList.toggle('hidden');
+//     // buttonClose.classList.toggle('hidden');
+//     editTitleElement.classList.toggle('hidden');
+//     editDescriptionElement.classList.toggle('hidden');
+//     buttonCloseEdit.addEventListener('click');
+//     editTitleElement.addEventListener('input', event => {
+//       titleElement.innerHTML = event.target.value;
+//       task.title = event.target.value;
+//     });
+//     editDescriptionElement.addEventListener('input', event => {
+//       descriptionElement.innerHTML = event.target.value;
+//       task.description = event.target.value;
+//     });
+//     setData(data);
+//   }
+// }
+
 function handleEditTask({target}) {
   if (target.dataset.role == 'edit') {
     const taskElement = target.closest('.todo-task');
@@ -80,16 +105,27 @@ function handleEditTask({target}) {
     const task = data.find(task => task.id === id);
     const titleElement = taskElement.querySelector('.todo-task-title');
     const descriptionElement = taskElement.querySelector('.todo-task-description');
-    const editTitleElement = taskElement.querySelector('#edit-title');
-    const editDescriptionElement = taskElement.querySelector('#edit-description');
-    const buttonClose = taskElement.querySelector('.button-close');
+    const editTitleElement = taskElement.querySelector('#task-edit-title');
+    const editDescriptionElement = taskElement.querySelector('#task-edit-description');
+    const buttonDeleteTask = taskElement
+      .querySelector('.button-delete-task')
+      .classList.toggle('hidden');
+    const buttonCloseEdit = taskElement.querySelector('.button-close-edit');
+    const editTitle = taskElement.querySelector('.edit-title').classList.toggle('hidden');
+    buttonCloseEdit.classList.toggle('hidden');
+    console.log(buttonCloseEdit);
     taskElement.classList.toggle('edit-task');
     titleElement.classList.toggle('hidden');
     descriptionElement.classList.toggle('hidden');
-    buttonClose.classList.toggle('hidden');
+    // buttonClose.classList.toggle('hidden');
     editTitleElement.classList.toggle('hidden');
     editDescriptionElement.classList.toggle('hidden');
-    console.log(titleElement.innerHTML);
+    console.warn(task.title);
+    buttonCloseEdit.addEventListener('click', () => {
+      titleElement.textContent = task.value;
+
+      render(data);
+    });
     editTitleElement.addEventListener('input', event => {
       titleElement.innerHTML = event.target.value;
       task.title = event.target.value;
@@ -101,62 +137,7 @@ function handleEditTask({target}) {
     setData(data);
   }
 }
-// function handleChangeSelectStatus(event) {
-//   let todosList = getData();
-//   let status = event.target.closest('#todo-select').value;
-//   let todoTask = event.target.closest('.todo-task');
-//   console.log(todoTask);
-//   if (status === '1') {
-//     console.error('1');
-//     // todoStorageCurrentListElement.append(todoTask);
-//     status = '1';
-//     //   setData(todosList);
-//     //   render(getData());
-//   }
-//   if (status === '2') {
-//     console.error(todoStorageInProgressListElement);
-//     todoStorageInProgressListElement.append(todoTask);
-//     status = '2';
-//     console.error('2');
-//     // setData(todosList);
-//     // render(getData());
-//   }
-//   if (status === '3') {
-//     console.error('3');
-//     // todoStorageDoneListElement.append(todoTask);
-//     status = '3';
-//     // setData(todosList);
-//     // render(getData());
-//   }
-//   setData(todosList);
-//   render(getData());
-// }
 
-// function handleClickButtonClose(event) {
-//   let todosList = getData();
-//   if (event.target.dataset.role == 'delete') {
-//     const todoElement = event.target.closest('.todo-task');
-//     const {id} = todoElement.dataset;
-//     console.log(id);
-
-//     todosList.splice(
-//       todosList.findIndex(todo => todo.id == id),
-//       1
-//     );
-//     setData(todosList);
-//     render(getData());
-//   }
-// }
-// function handleClickButtonClose(event) {
-//   // let todosList = getData();
-//   if (event.target.dataset.role == 'delete') {
-//     let todoId = event.target.closest('.todo-task').dataset.id;
-//     let targetTodoIndex = todosList.indexOf(todosList.find(item => item.id == todoId));
-//     data.splice(targetTodoIndex, 1);
-//     setData(data);
-//     render(data, todoStorageCurrentListElement);
-//   }
-// }
 export {
   handleSubmitForm,
   handleClickButtonDelleteAll,
