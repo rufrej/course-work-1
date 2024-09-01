@@ -7,8 +7,6 @@ const buttonOpenModalConfirmElement = document.querySelector('#dialog-confirm');
 const todoStorageCurrentListElement = document.querySelector('.todo-storage__current__list');
 const todoStorageInProgressListElement = document.querySelector('.todo-storage__in-progress__list');
 const todoStorageDoneListElement = document.querySelector('.todo-storage__done__list');
-// const inputTitleElement = document.querySelector('#input-title');
-// const inputDescriptionElement = document.querySelector('#input-description');
 const formAddElement = document.querySelector('#form-modal-add');
 const buttonSubmitElement = document.querySelector('#button-submit');
 const buttonDeleteAllElement = document.querySelector('.button-delete-all');
@@ -18,7 +16,6 @@ const buttonDialogConfirmElement = document.querySelector('#buttonDialogConfirm'
 const todoCounter = document.querySelector('#todo-counter');
 const inProgressCounter = document.querySelector('#in-progress-counter');
 const doneCounter = document.querySelector('#done-counter');
-// const s = document.querySelector('#todo-select');
 
 export {
   data,

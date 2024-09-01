@@ -78,7 +78,6 @@ function setData(data) {
 //     }
 //   });
 // }
-console.log(todoCounter.innerHTML);
 function render(payload) {
   const todoList = payload.filter(function (task) {
     return task.status === 'todo';
@@ -103,6 +102,12 @@ function render(payload) {
   });
   inProgressList.forEach(todo => {
     todoStorageInProgressListElement.insertAdjacentHTML('beforeend', buildTemplateTodo(todo));
+    // if (inProgressList.length === 6) {
+    //   console.warn('stop');
+    // }
+    // if (inProgressList.length > 6) {
+    //   inProgressList.pop();
+    // }
   });
   doneList.forEach(todo => {
     todoStorageDoneListElement.insertAdjacentHTML('beforeend', buildTemplateTodo(todo));

@@ -8,6 +8,7 @@ import {
   todoStorageDoneListElement,
   buttonOpenModalConfirmElement,
   buttonDialogConfirmElement,
+  selectUserStatusElement,
   // inputTitleElement,
   // inputDescriptionElement,
   formAddElement,
@@ -16,25 +17,57 @@ import {
 // Обработчик добавления тудушек
 function handleSubmitForm(event) {
   event.preventDefault();
-  const formData = new FormData(event.target);
-  const title = formData.get('title');
-  const description = formData.get('description');
+  const inProgressList = data.filter(function (task) {
+    return task.status === 'in-progress';
+  });
+  console.warn(selectUserStatusElement.value);
+  if ((inProgressList.length === 6) & (selectUserStatusElement.value === 'in-progress')) {
+    console.warn('aaaaaaaaa');
+    console.log(event.target);
+    checkInProgressList(event);
+  } else {
+    const formData = new FormData(event.target);
+    const title = formData.get('title');
+    const description = formData.get('description');
+    let newTodo = new ObjectTodo(title, description);
+    data.push(newTodo);
+    setData(data);
+    formAddElement.reset();
+    render(data);
+  }
+}
 
-  let newTodo = new ObjectTodo(title, description);
-  data.push(newTodo);
-  setData(data);
-  formAddElement.reset();
-  render(data);
+function checkInProgressList({target}) {
+  // const inProgressList = data.filter(function (task) {
+  //   return task.status === 'in-progress';
+  // });
+  console.log(target);
+  window.dialogWarning.showModal();
+  window.dialogWarning.classList.remove('top');
+  dialogWarning.querySelector('.dialog-warning__button-close').addEventListener('click', () => {
+    window.dialogWarning.classList.add('top');
+    render(data);
+  });
 }
 
 function handleChangeSelectStatus({target}) {
   if (target.dataset.role === 'select-status') {
-    const taskElement = target.closest('.todo-task');
-    const id = taskElement.dataset.id;
-    const task = data.find(task => task.id === id);
-    task.status = target.value;
-    setData(data);
-    render(data);
+    const inProgressList = data.filter(function (task) {
+      return task.status === 'in-progress';
+    });
+
+    if ((inProgressList.length === 6) & (target.value === 'in-progress')) {
+      checkInProgressList({target});
+    } else {
+      //   checkInProgressList({target});
+      // } else {
+      const taskElement = target.closest('.todo-task');
+      const id = taskElement.dataset.id;
+      const task = data.find(task => task.id === id);
+      task.status = target.value;
+      setData(data);
+      render(data);
+    }
   }
 }
 
@@ -52,7 +85,7 @@ function handleClickButtonClose({target}) {
   if (target.dataset.role == 'delete') {
     const todoElement = target.closest('.todo-task');
     const {id} = todoElement.dataset;
-    console.log(todoElement);
+
     let result = confirm('Are you sure');
     if (result) {
       data.splice(
@@ -117,13 +150,11 @@ function handleEditTask({target}) {
     taskElement.classList.toggle('edit-task');
     titleElement.classList.toggle('hidden');
     descriptionElement.classList.toggle('hidden');
-    // buttonClose.classList.toggle('hidden');
     editTitleElement.classList.toggle('hidden');
     editDescriptionElement.classList.toggle('hidden');
     console.warn(task.title);
     buttonCloseEdit.addEventListener('click', () => {
       titleElement.textContent = task.value;
-
       render(data);
     });
     editTitleElement.addEventListener('input', event => {
