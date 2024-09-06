@@ -1,12 +1,12 @@
 //Шаблон
-export function buildTemplateTodo({id, title, description, createdAt, userName, userIcon, status}) {
+function buildTemplateTask({id, title, description, createdAt, userName, userIcon, status}) {
   const statusToDo = status === 'todo' ? 'selected' : '';
   const statusInProgress = status === 'in-progress' ? 'selected' : '';
   const statusDone = status === 'done' ? 'selected' : '';
   return `
-         <div class="todo-task" data-id="${id}"">
-            <div class="todo-task-header">
-               <h4 class="todo-task-title">${title}</h4>
+         <div class="task" data-id="${id}"">
+            <div class="task-header">
+               <h4 class="task-title">${title}</h4>
                  <button type="button" class="button-delete-task btn btn-danger" data-role="delete">
                  <svg  class="pe-none" style="transform: scale(150%)" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                    <path d="M10 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -16,7 +16,7 @@ export function buildTemplateTodo({id, title, description, createdAt, userName, 
                    <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                  </svg></button>
             </div>
-            <p class="todo-task-description">${description}</p>
+            <p class="task-description">${description}</p>
             <div class="task-info">
            
               <p class="task-user-name">${userName}</p>
@@ -35,4 +35,18 @@ export function buildTemplateTodo({id, title, description, createdAt, userName, 
       `;
 }
 
-// <div class="user-icon">${userIcon}</div>
+function buildTemplateUserCard({id, name, username, email, phone, website, address, company}) {
+  return `
+  <div class="user-card" data-id="${id}">
+          <h6>Name:  ${name}</h6>
+          <p>User Name:  ${username}</p>
+          <p>Email:  ${email}</p>
+          <p>Phone:  ${phone}</p>
+          <p>Website:  <a href="">${website}</a></p>
+          <p>City:  ${address.city}</p>
+          <p>Company:  ${company.name}</p>
+        </div>
+  `;
+}
+
+export {buildTemplateTask, buildTemplateUserCard};

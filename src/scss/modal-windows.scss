@@ -1,0 +1,145 @@
+.dialog {
+  width: 60%;
+  height: max-content;
+  padding: 2%;
+  border-radius: 15px;
+  z-index: 1;
+  margin: auto;
+}
+
+.button-open__madal-add {
+  width: 70px;
+  height: 70px;
+  background-color: $aqua;
+  border-radius: 20%;
+  position: fixed;
+  bottom: 3%;
+  left: 3%;
+}
+
+.dialog__modal-add {
+  background-color: $aqua;
+}
+
+.dialog__modal-edit {
+  background-color: gold;
+}
+
+.dialog__users-list {
+  width: 90%;
+  height: 80%;
+}
+
+.dialog-warning {
+  width: max-content;
+  height: max-content;
+  background: linear-gradient(
+    45deg,
+    rgb(255, 193, 114) 50%,
+    rgb(255, 174, 129) 75%,
+    rgb(254, 160, 143) 100%
+  );
+  padding: 2%;
+  border-radius: 25px;
+  z-index: 1;
+  margin: auto;
+  padding: 3%;
+  transition: 0.5s;
+  svg {
+    width: 80%;
+    height: 80%;
+    margin: 5%;
+  }
+  form {
+    display: flex;
+    justify-content: end;
+  }
+  text-align: center;
+  h5 {
+    font-size: 30px;
+    color: white;
+  }
+}
+
+.dialog-warning__button-close {
+  align-self: flex-end;
+  // position: fixed;
+  // top: 5%;
+  // right: 5%;
+}
+
+.dialog__users-list__button-close {
+  align-self: flex-end;
+  position: fixed;
+  top: 3%;
+  right: 5%;
+}
+
+.modal-setting {
+  display: flex;
+  justify-content: space-between;
+  gap: 2%;
+
+  select {
+    margin-right: auto;
+
+    max-width: 30%;
+    font-size: 20px;
+  }
+
+  button {
+    font-size: 20px;
+  }
+}
+
+.form__modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2em;
+  margin-bottom: 2em;
+  position: relative;
+  h2,
+  input,
+  textarea {
+    font-size: 30px;
+    border-radius: 20px;
+    text-align: center;
+  }
+
+  select {
+    width: 40%;
+  }
+  .btn-success {
+    max-width: 30%;
+    position: absolute;
+    left: 90%;
+    top: 50%;
+  }
+}
+
+.users-list {
+  display: flex;
+  flex-direction: column;
+  // display: grid;
+  // grid-template-columns: repeat(2, 1fr);
+  gap: 2%;
+}
+.user-card {
+  padding: 5%;
+  margin-bottom: 10px;
+  border: solid black 2px;
+  border-radius: 15px;
+  background-color: $lavender;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  h6 {
+    font-size: 30px;
+  }
+  p {
+    font-size: 24px;
+  }
+}
+
+#button-delete-all:hover {
+  transform: scale(100%);
+}

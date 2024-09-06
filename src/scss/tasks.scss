@@ -1,0 +1,51 @@
+.task {
+  font-size: 16px;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  transition: 0.2s;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.task-title {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.task-info {
+  display: flex;
+  margin-bottom: 10px;
+  img {
+    max-width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+}
+
+.task-user-name {
+  font-size: 24px;
+}
+
+.task-time {
+  // margin: auto;
+  margin-top: 15px;
+  margin-left: auto;
+}
+
+.task-setting {
+  display: flex;
+  justify-content: space-between;
+  gap: 10%;
+}
+
+.task-select {
+  max-width: 300px;
+}

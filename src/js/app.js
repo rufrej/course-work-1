@@ -1,17 +1,12 @@
-// import { Tooltip, Toast, Popover } from 'bootstrap'
-import {clock, getData, setData, render} from './helpers';
+import {render} from './helpers';
 import {
   data,
-  todosWrapperElement,
-  containerElement,
+  tasksWrapperElement,
   buttonOpenModalAddElement,
-  todoListElement,
-  inProgressListElement,
-  doneListElement,
-  inputTitleElement,
-  inputDescriptionElement,
+  // todoListElement,
+  // inProgressListElement,
+  // doneListElement,
   formAddElement,
-  buttonSubmitElement,
   buttonDeleteAllElement,
   buttonOpenModalUsersListElement,
   buttonOpenModalUsersListEditElement,
@@ -24,27 +19,19 @@ import {
   handleChangeSelectStatus,
   handleEditTask,
 } from './handlers.js';
+
 buttonOpenModalAddElement.addEventListener('click', () => {
   window.dialogModalAdd.showModal();
-  // const selectUserName = document.querySelector('#add-select')
-  // selectUserName.addEventListener('click', () => {
-  //   userIcon.innerHTML = showUserIcon(editUserName.value);
-  // });
 });
-
 formAddElement.addEventListener('submit', handleSubmitForm);
-// buttonDeleteAllElement.addEventListener('click', handleClickButtonDelleteAll);
-todosWrapperElement.addEventListener('change', handleChangeSelectStatus);
-todosWrapperElement.addEventListener('click', handleEditTask);
+tasksWrapperElement.addEventListener('change', handleChangeSelectStatus);
+tasksWrapperElement.addEventListener('click', handleEditTask);
 buttonOpenModalUsersListElement.addEventListener('click', () => {
   window.dialogUsersList.showModal();
 });
 buttonOpenModalUsersListEditElement.addEventListener('click', () => {
   window.dialogUsersList.showModal();
 });
-//------
-todoListElement.addEventListener('click', handleClickButtonClose);
-inProgressListElement.addEventListener('click', handleClickButtonClose);
-doneListElement.addEventListener('click', handleClickButtonClose);
-
+buttonDeleteAllElement.addEventListener('click', handleClickButtonDelleteAll);
+tasksWrapperElement.addEventListener('click', handleClickButtonClose);
 render(data);

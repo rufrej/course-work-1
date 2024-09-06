@@ -1,43 +1,15 @@
 import {
-  // buttonOpenModalAddElement,
   data,
   todoListElement,
   inProgressListElement,
   doneListElement,
-  selectUserNameElement,
-  selectUserStatusElement,
   todoCounter,
   inProgressCounter,
   doneCounter,
-  usersIcons,
 } from './declaration.js';
 
-import {buildTemplateTodo} from './templates.js';
+import {buildTemplateTask, buildTemplateUserCard} from './templates.js';
 import {ObjectTodo} from './models.js';
-
-// function getUserName() {
-//   selectUserNameElement.addEventListener('change', () => {
-//     return this.value;
-//   });
-// }
-
-function showUserIcon(user) {
-  if (user == 'Ilya') {
-    return usersIcons.user1;
-  }
-  if (user == 'Artem') {
-    return usersIcons.user2;
-  }
-  if (user == 'Polina') {
-    return usersIcons.user3;
-  }
-  if (user == 'Diana') {
-    return usersIcons.user4;
-  }
-  if (user == 'Irina') {
-    return usersIcons.user5;
-  }
-}
 
 function checkInProgressList({target}) {
   window.dialogWarning.showModal();
@@ -64,41 +36,30 @@ function createId() {
   return newId;
 }
 
-// Получаем данные из LocalStorage
+function printUserCard(data) {
+  const usersListElement = document.querySelector('.users-list');
+  data.forEach(function (item) {
+    usersListElement.insertAdjacentHTML('beforeend', buildTemplateUserCard(item));
+  });
+}
+function printUserOption(data, select) {
+  data.forEach(function (item) {
+    const option = document.createElement('option');
+    option.value = `${item.name}`;
+    option.text = `${item.name}`;
+    select.add(option);
+  });
+}
+
 function getData() {
   const todos = localStorage.getItem('todos');
   return todos ? JSON.parse(todos) : [];
 }
-// Записывавем данные в LocalStorage
+
 function setData(data) {
   localStorage.setItem('todos', JSON.stringify(data));
 }
 
-//Рендерим всю страницу
-// function render(payload) {
-//   todoStorageCurrentListElement.innerHTML = '';
-//   payload.forEach(todo => {
-//     todoStorageCurrentListElement.insertAdjacentHTML('beforeend', buildTemplateTodo(todo));
-//   });
-// }
-
-// function render(payload) {
-//   todoStorageCurrentListElement.innerHTML = '';
-//   todoStorageInProgressListElement.innerHTML = '';
-//   todoStorageDoneListElement.innerHTML = '';
-
-//   payload.forEach(todo => {
-//     if (selectUserStatusElement.value === '1') {
-//       todoStorageCurrentListElement.insertAdjacentHTML('beforeend', buildTemplateTodo(todo));
-//     }
-//     if (selectUserStatusElement.value === '2') {
-//       todoStorageInProgressListElement.insertAdjacentHTML('beforeend', buildTemplateTodo(todo));
-//     }
-//     if (selectUserStatusElement.value === '3') {
-//       todoStorageDoneListElement.insertAdjacentHTML('beforeend', buildTemplateTodo(todo));
-//     }
-//   });
-// }
 function render(payload) {
   const todoList = payload.filter(function (task) {
     return task.status === 'todo';
@@ -119,14 +80,24 @@ function render(payload) {
   doneListElement.innerHTML = '';
 
   todoList.forEach(todo => {
-    todoListElement.insertAdjacentHTML('beforeend', buildTemplateTodo(todo));
+    todoListElement.insertAdjacentHTML('beforeend', buildTemplateTask(todo));
   });
   inProgressList.forEach(todo => {
-    inProgressListElement.insertAdjacentHTML('beforeend', buildTemplateTodo(todo));
+    inProgressListElement.insertAdjacentHTML('beforeend', buildTemplateTask(todo));
   });
   doneList.forEach(todo => {
-    doneListElement.insertAdjacentHTML('beforeend', buildTemplateTodo(todo));
+    doneListElement.insertAdjacentHTML('beforeend', buildTemplateTask(todo));
   });
 }
 
-export {clock, checkInProgressList, createId, buildDate, getData, setData, render, showUserIcon};
+export {
+  clock,
+  checkInProgressList,
+  createId,
+  buildDate,
+  printUserCard,
+  printUserOption,
+  getData,
+  setData,
+  render,
+};
