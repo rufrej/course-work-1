@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./scss/app.scss" />
     <script type="module" src="./js/app.js"></script>
+    <script type="module" src="./js/requests.js"></script>
     <title>Document</title>
   </head>
   <body>
@@ -12,10 +13,9 @@
       <h1>Trello</h1>
       <div class="clock"></div>
     </header>
-
     <!-- -------------- Modal window for adding --------- -->
-    <dialog class="dialog-open__modal-add" id="dialogOpenModalAdd">
-      <form id="form-modal-add" class="form-modal form-modal-add">
+    <dialog class="dialog dialog__modal-add" id="dialogModalAdd">
+      <form id="form__modal-add" class="form-modal form__modal">
         <h2>Create new todo</h2>
         <input id="input-title" type="text" name="title" placeholder="Title" />
         <textarea
@@ -27,11 +27,15 @@
           cols="40"
         ></textarea>
       </form>
-      <div class="d-flex">
+      <div class="d-flex gap-3">
+        <button id="buttonOpenModalUsersList" class="btn btn-light">Show Users</button>
+        <div id="user-icon"></div>
         <select id="select__user-name" class="form-select">
-          <option value="Ilya">Ilya</option>
+          <!-- <option value="Ilya">Ilya</option>
+          <option value="Artem">Artem</option>
           <option value="Polina">Polina</option>
           <option value="Diana">Diana</option>
+          <option value="Irina">Irina</option> -->
         </select>
         <select id="select__status" class="form-select">
           <option value="todo">To Do</option>
@@ -42,26 +46,63 @@
           type="submit"
           data-role="submit"
           id="button-submit"
-          form="form-modal-add"
+          form="form__modal-add"
           class="btn btn-success"
         >
           Confirm
         </button>
         <form method="dialog">
-          <button class="btn btn-danger">Cancel</button>
+          <button class="btn btn-light">Cancel</button>
+        </form>
+      </div>
+    </dialog>
+    <!-- ------------------------  Modal window for edit ---------------------------- -->
+
+    <dialog class="dialog dialog__modal-edit" id="dialogModalEdit">
+      <form id="form__modal-edit" class="form-modal form__modal">
+        <h2>Edit Tast</h2>
+        <input id="input-title" type="text" name="title" placeholder="Title" />
+        <textarea
+          id="input-description"
+          type="text"
+          name="description"
+          placeholder="Description"
+          rows="3"
+          cols="40"
+        ></textarea>
+      </form>
+      <div class="d-flex gap-3">
+        <button id="buttonOpenModalUsersListEdit" class="btn btn-light">Show Users</button>
+        <!-- <div id="user-icon"></div> -->
+        <select id="modal-edit__select__user-name" class="form-select">
+          <!-- <option value="Ilya">Ilya</option>
+          <option value="Artem">Artem</option>
+          <option value="Polina">Polina</option>
+          <option value="Diana">Diana</option>
+          <option value="Irina">Irina</option> -->
+        </select>
+
+        <!-- <select id="select__status" class="form-select">
+          <option value="todo">To Do</option>
+          <option value="in-progress">In progress</option>
+          <option value="done">Done</option>
+        </select> -->
+        <button
+          type="submit"
+          data-role="submit"
+          id="button-submit"
+          form="form__modal-edit"
+          class="btn btn-success"
+        >
+          Confirm
+        </button>
+        <form method="dialog">
+          <button class="btn btn-light">Cancel</button>
         </form>
       </div>
     </dialog>
 
     <!-- ---------------------------------------------------- -->
-    <!-- <dialog class="dialog-confirm" id="dialogConfirm">
-      <p>Are you sure</p>
-
-      <form method="dialog">
-        <button class="btn btn-danger">Close</button>
-      </form>
-      <button type="button" class="btn btn-primary" id="buttonDialogConfirm">Confirm</button>
-    </dialog> -->
 
     <dialog class="dialog-warning top" id="dialogWarning">
       <h5>
@@ -148,15 +189,37 @@
       </form>
     </dialog>
     <!-- ---------------------------------------------------- -->
+    <dialog class="dialog dialog__users-list" id="dialogUsersList">
+      <div class="users-list">
+        <!-- <div class="user-card">
+          <h5></h5>
+          <p>Name: </p>
+          <p>User Name: </p>
+          <p>Email: </p>
+          <p>Phone:</p>
+          <p>Website:</p>
+          <p>Address</p>
+          <p>Company</p>
+        </div> -->
+      </div>
+      <form method="dialog">
+        <button class="btn btn-light dialog-warning__button-close">Close</button>
+      </form>
+    </dialog>
+
+    <!-- ---------------------------------------------------- -->
     <main class="todos-wrapper">
-      <div class="todo-storage container">
+      <!-- ---------------------------------------------------- -->
+      <button type="button" class="button-open__madal-add" id="buttonOpenModalAdd">
+        <img style="transform: scale(220%)" src="./image/add-square-svgrepo-com.svg" alt="+" />
+      </button>
+      <!-- ---------------------------------------------------- -->
+
+      <div class="to-do__wrapper container">
         <div class="todo-storage__title-wrapper">
           <h3>TODO: <span id="todo-counter">0</span></h3>
-          <button type="button" class="btn btn-success" id="buttonOpenModalAdd">
-            <img style="transform: scale(150%)" src="./image/add-square-svgrepo-com.svg" alt="+" />
-          </button>
         </div>
-        <div class="todo-storage__current__list">
+        <div class="to-do__list">
           <!-- <div class="todo-task">
             <div class="todo-task-header">
               <h4 class="todo-task-title">Title : task 1</h4>
@@ -183,9 +246,9 @@
         </div>
       </div>
 
-      <div class="todo-storage__in-progress container">
+      <div class="in-progress__wrapper container">
         <h3>IN PROGRESS: <span id="in-progress-counter">0</span></h3>
-        <div class="todo-storage__in-progress__list">
+        <div class="in-progress__list">
           <!-- <div class="todo-task">
             <div class="todo-task-header">
               <h4 class="todo-task-title">Title : task 1</h4>
@@ -213,11 +276,13 @@
         </div>
       </div>
 
-      <div class="todo-storage__done container">
+      <div class="done__wrapper container">
         <h3>Done: <span id="done-counter">0</span></h3>
-        <div class="todo-storage__done__list"></div>
+        <div class="done__list"></div>
       </div>
-      <button type="button" class="btn btn-danger button-delete-all">Delete All</button>
+      <!-- <button type="button" class="btn btn-danger button-delete-all">Delete All</button> -->
+      <!-- <div class="shadow hidden"></div> -->
+      <!-- <img style="width: 50px; height: 50px" src="./image/user1.png" alt="user1" /> -->
     </main>
   </body>
 </html>

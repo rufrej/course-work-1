@@ -8,6 +8,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
 button:hover {
   transform: scale(110%);
   transition: 0.4s;
@@ -20,6 +24,7 @@ button:hover {
   border-radius: 30px;
   padding: 5%;
   margin: 2%;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
 .clock {
@@ -28,17 +33,31 @@ button:hover {
   border-radius: 10px;
 }
 
-.dialog-open__modal-add {
-  max-width: 55em;
-  max-height: 35em;
-  background-color: $aqua;
+.dialog {
+  max-width: 80%;
+  max-height: 60%;
   padding: 2%;
   border-radius: 15px;
   z-index: 1;
   margin: auto;
 }
 
-.form-modal-add {
+#user-icon {
+  margin: 0 30px;
+  img {
+    transform: scale(180%);
+    width: 45px;
+    height: 45px;
+  }
+}
+.dialog__modal-add {
+  background-color: $aqua;
+}
+.dialog__modal-edit {
+  background-color: gold;
+}
+
+.form__modal {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -63,14 +82,33 @@ button:hover {
     top: 50%;
   }
 }
-
-.form-add__button-close {
-  position: absolute;
-  // top: 200%;
-  bottom: 85%;
-  left: 85%;
-  // transform: translate(200% 200%);
+.dialog__users-list {
+  width: 90%;
+  height: 80%;
 }
+.users-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5%;
+}
+.user-card {
+  padding: 5%;
+  border: solid black 2px;
+  border-radius: 15px;
+  background-color: $lavender;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  p {
+    font-size: 18px;
+  }
+}
+
+// .form-add__button-close {
+//   position: absolute;
+//   // top: 200%;
+//   bottom: 85%;
+//   left: 85%;
+
+// }
 
 // .form-modal-add__controlling{
 // }
@@ -78,6 +116,16 @@ button:hover {
 .todos-wrapper {
   display: flex;
   position: relative;
+}
+
+.button-open__madal-add {
+  width: 70px;
+  height: 70px;
+  background-color: $aqua;
+  border-radius: 20%;
+  position: fixed;
+  bottom: 3%;
+  left: 3%;
 }
 
 .container {
@@ -96,57 +144,71 @@ button:hover {
 //     border-radius: 10px;
 //     // transform: scale(102%);
 // }
-.todo-storage h3 {
+.to-do__wrapper h3 {
+  background-color: #8ec5fc;
   // background-color: $aqua;
   text-wrap: nowrap;
+  padding: 20px 10px;
+  border-radius: 10px;
 }
 
-.todo-storage__in-progress h3 {
-  background-color: $smoke;
+.in-progress__wrapper h3 {
+  background-color: #ffb199;
+  // background-color: $smoke;
+  // background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
   text-wrap: nowrap;
   padding: 20px 10px;
   border-radius: 10px;
 }
 
-.todo-storage__done h3 {
-  background-color: $blue;
+.done__wrapper h3 {
+  // background-image: linear-gradient(to top, #9890e3 0%, #b1f4cf 100%);
+  background-color: #b1f4cf;
   padding: 20px 10px;
   border-radius: 10px;
 }
 
-.todo-storage__title-wrapper {
-  display: flex;
-  justify-content: space-between;
-  background-color: $aqua;
-  padding: 16px 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
+// .todo-storage__title-wrapper {
+//   display: flex;
+//   justify-content: space-between;
+//   background-color: $aqua;
+//   padding: 16px 10px;
+//   border-radius: 10px;
+//   margin-bottom: 10px;
+// }
 // .todo-storage__current,
 // .todo-storage__in-progress,
 // .todo-storage__done {
 // }
 
-.todo-storage__current__list,
-.todo-storage__in-progress__list,
-.todo-storage__done__list {
-  height: 100%;
+.to-do__list,
+.in-progress__list,
+.done__list {
+  height: max-content;
   display: flex;
   flex-direction: column;
   padding: 1%;
   gap: 2%;
+  margin-bottom: auto;
 }
 
-.todo-storage__current__list div {
-  background-color: $aqua;
+.to-do__list div {
+  background-color: #8ec5fc;
+  // background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
 }
 
-.todo-storage__in-progress__list div {
-  background-color: $smoke;
+.in-progress__list div {
+  background-color: #ffb199;
+  // background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+  // background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+  // img {
+  //   background: none;
+  // }
 }
 
-.todo-storage__done__list div {
-  background-color: $blue;
+.done__list div {
+  // background-color: $blue;
+  background-color: #b1f4cf;
 }
 
 .todo-task {
@@ -159,20 +221,51 @@ button:hover {
   transition: 0.2s;
 }
 
+.user-icon {
+  width: 45px;
+  height: 45px;
+}
+
 .edit-task {
-  // transform: scale(150%);
-  position: absolute;
+  position: fixed;
   margin: auto;
-  margin-inline: 10%;
+  margin-inline: 30%;
   inset-inline: 0;
   inset-block-start: 50%;
   transform: translateY(-50%) scale(120%);
-  z-index: 1;
+  z-index: 2;
+  box-shadow: 0px -5px 10px 100em rgba(0, 0, 0, 0.5);
 }
+
+// .edit-task > * {
+//   z-index: 2;
+// }
+
+.edit-task::after {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  transform: scale(300%);
+  z-index: -1;
+}
+
+// .shadow {
+//   width: 200%;
+//   height: 200%;
+//   background-color: black;
+//   opacity: 0.7;
+//   position: fixed;
+//   inset-inline: 0;
+//   inset-block-start: 50%;
+//   transform: translateY(-50%);
+//   z-index: 1;
+// }
 
 .edit-title {
   text-align: center;
   font-size: 36px;
+  z-index: 2;
 }
 #task-edit-title {
   font-size: 26px;
@@ -186,6 +279,20 @@ button:hover {
   width: 100%;
   border-radius: 20px;
   text-align: center;
+  margin-bottom: 10px;
+}
+
+#card-select__user-name {
+  max-width: 50%;
+}
+
+.task-satus-select {
+  max-width: 50%;
+}
+
+.button-close-edit {
+  margin-left: auto;
+  margin-right: 5%;
 }
 
 .todo-task-header {
@@ -201,8 +308,9 @@ button:hover {
 // .todo-storage__task-description {
 // }
 
-.todo-task-info {
+.task-info {
   display: flex;
+  margin-bottom: 10px;
   img {
     max-width: 40px;
     height: 40px;
@@ -210,18 +318,17 @@ button:hover {
   }
 }
 
-.todo-task-user-name {
+.task-user-name {
   font-size: 24px;
 }
 
-.todo-task-time {
+.task-time {
   margin-left: auto;
 }
 
 .task-setting {
   display: flex;
   justify-content: space-between;
-  gap: 5%;
 }
 
 .task-select {
@@ -245,7 +352,7 @@ button:hover {
   border-radius: 25px;
   z-index: 1;
   margin: auto;
-  padding: 5%;
+  padding: 3%;
   transition: 0.5s;
   svg {
     width: 80%;

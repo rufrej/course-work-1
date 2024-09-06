@@ -5,14 +5,16 @@ import {
   todosWrapperElement,
   containerElement,
   buttonOpenModalAddElement,
-  todoStorageCurrentListElement,
-  todoStorageInProgressListElement,
-  todoStorageDoneListElement,
+  todoListElement,
+  inProgressListElement,
+  doneListElement,
   inputTitleElement,
   inputDescriptionElement,
   formAddElement,
   buttonSubmitElement,
   buttonDeleteAllElement,
+  buttonOpenModalUsersListElement,
+  buttonOpenModalUsersListEditElement,
 } from './declaration.js';
 
 import {
@@ -23,17 +25,26 @@ import {
   handleEditTask,
 } from './handlers.js';
 buttonOpenModalAddElement.addEventListener('click', () => {
-  window.dialogOpenModalAdd.showModal();
+  window.dialogModalAdd.showModal();
+  // const selectUserName = document.querySelector('#add-select')
+  // selectUserName.addEventListener('click', () => {
+  //   userIcon.innerHTML = showUserIcon(editUserName.value);
+  // });
 });
 
 formAddElement.addEventListener('submit', handleSubmitForm);
-buttonDeleteAllElement.addEventListener('click', handleClickButtonDelleteAll);
-todoStorageDoneListElement.addEventListener('click', handleClickButtonClose);
+// buttonDeleteAllElement.addEventListener('click', handleClickButtonDelleteAll);
 todosWrapperElement.addEventListener('change', handleChangeSelectStatus);
 todosWrapperElement.addEventListener('click', handleEditTask);
+buttonOpenModalUsersListElement.addEventListener('click', () => {
+  window.dialogUsersList.showModal();
+});
+buttonOpenModalUsersListEditElement.addEventListener('click', () => {
+  window.dialogUsersList.showModal();
+});
 //------
-todoStorageCurrentListElement.addEventListener('click', handleClickButtonClose);
-todoStorageInProgressListElement.addEventListener('click', handleClickButtonClose);
-todoStorageDoneListElement.addEventListener('click', handleClickButtonClose);
+todoListElement.addEventListener('click', handleClickButtonClose);
+inProgressListElement.addEventListener('click', handleClickButtonClose);
+doneListElement.addEventListener('click', handleClickButtonClose);
 
 render(data);

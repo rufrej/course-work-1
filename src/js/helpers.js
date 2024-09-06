@@ -1,13 +1,15 @@
 import {
-  buttonOpenModalAddElement,
-  todoStorageCurrentListElement,
-  todoStorageInProgressListElement,
-  todoStorageDoneListElement,
+  // buttonOpenModalAddElement,
+  data,
+  todoListElement,
+  inProgressListElement,
+  doneListElement,
   selectUserNameElement,
   selectUserStatusElement,
   todoCounter,
   inProgressCounter,
   doneCounter,
+  usersIcons,
 } from './declaration.js';
 
 import {buildTemplateTodo} from './templates.js';
@@ -19,13 +21,32 @@ import {ObjectTodo} from './models.js';
 //   });
 // }
 
-// function showUserIcon() {
-//   if (selectUserNameElement.value == 'ilya') {
-//     return ` <img src="./image/user1.png" alt="user1" />`;
-//   }
-// }
+function showUserIcon(user) {
+  if (user == 'Ilya') {
+    return usersIcons.user1;
+  }
+  if (user == 'Artem') {
+    return usersIcons.user2;
+  }
+  if (user == 'Polina') {
+    return usersIcons.user3;
+  }
+  if (user == 'Diana') {
+    return usersIcons.user4;
+  }
+  if (user == 'Irina') {
+    return usersIcons.user5;
+  }
+}
 
-// console.warn(getUserName());
+function checkInProgressList({target}) {
+  window.dialogWarning.showModal();
+  window.dialogWarning.classList.remove('top');
+  dialogWarning.querySelector('.dialog-warning__button-close').addEventListener('click', () => {
+    window.dialogWarning.classList.add('top');
+    render(data);
+  });
+}
 
 const clock = setInterval(() => {
   let date = new Date();
@@ -93,38 +114,19 @@ function render(payload) {
   inProgressCounter.innerHTML = inProgressList.length;
   doneCounter.innerHTML = doneList.length;
 
-  todoStorageCurrentListElement.innerHTML = '';
-  todoStorageInProgressListElement.innerHTML = '';
-  todoStorageDoneListElement.innerHTML = '';
+  todoListElement.innerHTML = '';
+  inProgressListElement.innerHTML = '';
+  doneListElement.innerHTML = '';
 
   todoList.forEach(todo => {
-    todoStorageCurrentListElement.insertAdjacentHTML('beforeend', buildTemplateTodo(todo));
+    todoListElement.insertAdjacentHTML('beforeend', buildTemplateTodo(todo));
   });
   inProgressList.forEach(todo => {
-    todoStorageInProgressListElement.insertAdjacentHTML('beforeend', buildTemplateTodo(todo));
-    // if (inProgressList.length === 6) {
-    //   console.warn('stop');
-    // }
-    // if (inProgressList.length > 6) {
-    //   inProgressList.pop();
-    // }
+    inProgressListElement.insertAdjacentHTML('beforeend', buildTemplateTodo(todo));
   });
   doneList.forEach(todo => {
-    todoStorageDoneListElement.insertAdjacentHTML('beforeend', buildTemplateTodo(todo));
+    doneListElement.insertAdjacentHTML('beforeend', buildTemplateTodo(todo));
   });
-
-  // payload.forEach(({id, title, description, createdAt, userName, status}) => {
-  //   const task = buildTemplateTodo({id, title, description, createdAt, userName});
-  //   if (status == 'todo') {
-  //     todoStorageCurrentListElement.insertAdjacentHTML('beforeend', task);
-  //   }
-  //   if (status == 'in-progress') {
-  //     todoStorageCurrentListElement.insertAdjacentHTML('beforeend', task);
-  //   }
-  //   if (status == 'done') {
-  //     todoStorageCurrentListElement.insertAdjacentHTML('beforeend', task);
-  //   }
-  // });
 }
 
-export {getUserName, clock, createId, buildDate, getData, setData, render};
+export {clock, checkInProgressList, createId, buildDate, getData, setData, render, showUserIcon};
